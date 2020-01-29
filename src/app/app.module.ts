@@ -12,6 +12,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationService } from 'src/service/authentication.service';
+import { UploadService } from 'src/service/upload.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { AuthenticationService } from 'src/service/authentication.service';
     FormsModule
 
   ],
-  providers: [AuthenticationService],
+  providers: [AuthenticationService, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
