@@ -1,6 +1,8 @@
+
 import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from 'src/service/authentication.service';
-import { Router } from '@angular/router';
+
+import { UploadService } from 'src/service/upload.service';
+
 
 @Component({
   selector: 'app-upload',
@@ -9,45 +11,39 @@ import { Router } from '@angular/router';
 })
 export class UploadComponent implements OnInit {
 
-  fileData: File = null;
-  previewUrl:any = null;
-  fileUploadProgress: string = null;
-  uploadedFilePath: string = null;
+
+  fileToUpload: File = null;
+  title: string = null;
+
+
+  constructor(private uploadService: UploadService) { }
 
   ngOnInit() {
   }
 
-  constructor(private uploadService: AuthenticationService, router: Router){}
 
-
-  fileProgress(fileInput: any) {
-    this.fileData = <File>fileInput.target.files[0];
-    this.preview();
-}
-
-preview() {
-  // Show preview 
-  var mimeType = this.fileData.type;
-  if (mimeType.match(/image\/*/) == null) {
-    return;
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
   }
 
-  var reader = new FileReader();      
-  reader.readAsDataURL(this.fileData); 
-  reader.onload = (_event) => { 
-    this.previewUrl = reader.result; 
+  uploadFile() {
+    if (this.fileToUpload == null || this.title == null) {
+      alert('You must choose a file and define a title first!');
+    } else {
+      this.uploadService.postFile(this.title, this.fileToUpload)
+        .subscribe(data => this.success(),
+          error => { alert('Error in uploading!'); console.log(error); }
+        );
+      //  window.location.reload(true);
+    }
   }
-}
 
-// onSubmit() {
-//   const formData = new FormData();
-//     formData.append('doc', this.fileData);
-//     this.uploadService.saveFile(formData)
-//       .subscribe(res => {
-//         console.log(res);
-//         this.uploadedFilePath = res.data.filePath;
-//         alert('SUCCESS !!');
-//       })
-// }
-// }
+  success(): void {
+    alert('file ' + this.title + 'uploaded!');
+    this.title = null;
+    this.fileToUpload = null;
+    //   this.handleFileInput(null);
+    //   (<HTMLInputElement>document.getElementById("file")).value = null;
+  }
+
 }
