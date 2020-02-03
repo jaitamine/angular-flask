@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationService } from 'src/service/authentication.service';
 import { UploadService } from 'src/service/upload.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { UploadService } from 'src/service/upload.service';
     HttpClientModule,
     JwtModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule
 
   ],
   providers: [AuthenticationService, UploadService],
