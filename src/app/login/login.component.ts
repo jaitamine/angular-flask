@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/service/authentication.service';
 import { Router } from '@angular/router';
+import { VirtualTimeScheduler } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +10,13 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   mode: number;
+  jwt : any;
   
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
+
+   
   }
 
 
@@ -20,15 +24,21 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(user).subscribe(resp => {
       // tslint:disable-next-line:prefer-const
-      let jwt = resp.headers.get('Authorization');
-      // console.log(jwt);
-      this.authService.saveToken(jwt);
+      this.jwt = resp.body['Authorization'];
+      console.log(this.jwt);
+      this.authService.saveToken(this.jwt);
       this.router.navigate(['/upload']);
+      
 
-    }, err => {
-      this.mode = 1;
     });
 
   }
+
+//  onLogout(){
+
+//   this.authService.logout();
+//   this.status = false;
+//   this.router.navigate(['/login']);
+//  }
 
 }

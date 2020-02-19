@@ -2,12 +2,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Resp } from 'src/entities/resp';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
-    private host = 'http://localhost:8081';
+    private host = 'http://localhost:5000';
     private jwtToken = null;
     private roles: any[] = [];
+  
     constructor(private http: HttpClient) {
 
 
@@ -15,7 +18,7 @@ export class AuthenticationService {
 
     login(user) {
         //    observe response pour ne pas convertir l'objet en json et recuperer directement la requete
-        return this.http.post(this.host + '/login', user, { observe: 'response' });
+        return this.http.post(this.host + '/auth/login', user, { observe: 'response' });
 
     }
     saveToken(jwt: string) {
@@ -25,7 +28,7 @@ export class AuthenticationService {
         let jwtHelper: JwtHelperService = new JwtHelperService();
         this.jwtToken = jwt;
         console.log(this.jwtToken);
-        this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
+        //this.roles = jwtHelper.decodeToken(this.jwtToken).roles;
 
 
     }
@@ -43,6 +46,11 @@ export class AuthenticationService {
         localStorage.removeItem('token');
     }
 
+    loggedIn(){
+
+        return !!localStorage.getItem('token');
+    }
+
     isAdmin() {
 
         // tslint:disable-next-line:prefer-const
@@ -56,13 +64,23 @@ export class AuthenticationService {
 
     saveFile(doc) {
         // tslint:disable-next-line:object-literal-key-quotes
-        return this.http.post(this.host + '/saveFile', doc, { headers: new HttpHeaders({ 'Authorization': this.jwtToken }) });
+        
+        return this.http.post(this.host + '/save_file', doc, { headers: new HttpHeaders({ 'Authorization': this.jwtToken}) });
 
 
 
     }
     register(user) {
-        return this.http.post(this.host + '/register', user);
+        return this.http.post(this.host + '/auth/register', user);
     }
+
+    postFile( fileToUpload: File) {
+        const endpoint = 'http://localhost:5000/upload/save_file';
+        const formData = new FormData();
+        formData.append('file', fileToUpload);
+        if (this.jwtToken == null) this.loadToken();
+        return this.http.post(endpoint, formData, {headers: new HttpHeaders({ 'Authorization': this.jwtToken })});
+    }
+    
 
 }

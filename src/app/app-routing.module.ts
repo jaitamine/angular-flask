@@ -1,13 +1,20 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UploadComponent } from './upload/upload.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { ManagerComponent } from './manager/manager.component';
+import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
-  {path : 'upload', component : UploadComponent},
-  {path : 'login', component : LoginComponent},
-  {path : 'register', component : RegistrationComponent}
+
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'manager', component: ManagerComponent },
+
+  { path: 'upload', component: UploadComponent, children: [{ path: 'result', component: ResultComponent }] }
+
+
 
 ];
 
