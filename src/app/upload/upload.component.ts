@@ -1,7 +1,10 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 
 import { UploadService } from 'src/service/upload.service';
+import { Resp } from 'src/entities/resp';
+import { HttpResponse } from '@angular/common/http';
+import { AuthenticationService } from 'src/service/authentication.service';
 
 
 @Component({
@@ -14,9 +17,10 @@ export class UploadComponent implements OnInit {
 
   fileToUpload: File = null;
   title: string = null;
+  response: any;
 
 
-  constructor(private uploadService: UploadService) { }
+  constructor(private uploadService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -27,19 +31,23 @@ export class UploadComponent implements OnInit {
   }
 
   uploadFile() {
-    if (this.fileToUpload == null || this.title == null) {
-      alert('You must choose a file and define a title first!');
+    if (this.fileToUpload == null) {
+      alert('You must choose a file first!');
     } else {
-      this.uploadService.postFile(this.title, this.fileToUpload)
-        .subscribe(data => this.success(),
-          error => { alert('Error in uploading!'); console.log(error); }
+      this.uploadService.postFile(this.fileToUpload)
+        .subscribe(data => { console.log(data), this.response=data['predictions']},
+          error => {
+            alert('Error in uploading!'); console.log(error);
+
+            //  window.location.reload(true);
+          }
+
         );
-      //  window.location.reload(true);
     }
   }
 
   success(): void {
-    alert('file ' + this.title + 'uploaded!');
+    alert('file ' + ' ' + this.title + 'uploaded!');
     this.title = null;
     this.fileToUpload = null;
     //   this.handleFileInput(null);
@@ -47,3 +55,4 @@ export class UploadComponent implements OnInit {
   }
 
 }
+

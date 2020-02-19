@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthenticationService } from 'src/service/authentication.service';
 import { Router } from '@angular/router';
-
+import { NgModule } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,10 +9,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   title = 'Angular';
-
+  status = true;
   constructor(private authService: AuthenticationService, private router: Router) {
-
-
   }
   onLogout() {
 

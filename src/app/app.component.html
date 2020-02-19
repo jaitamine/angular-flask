@@ -9,11 +9,6 @@
     <!-- Bootstrap CSS -->
 
 
-
-
-
-
-
     <title>Flask classification</title>
 
 </head>
@@ -22,7 +17,7 @@
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="/">Flask Blog</a>
+                <a class="navbar-brand mr-4" href="/">HR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,37 +29,14 @@
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link" routerLink='/login'>Login</a>
-                        <a class="nav-item nav-link" routerLink='/register'>Register</a>
+                        <a *ngIf="!authService.loggedIn()" class="nav-item nav-link" routerLink='/login'>login</a>
+                        <a *ngIf="authService.loggedIn()" class="nav-item nav-link" (click)= "onLogout()">logout</a>
                     </div>
                 </div>
             </div>
+            
         </nav>
     </header>
-    <main role="main" class="container">
-        <div>
-            <router-outlet></router-outlet>
-            <a [routerLink]="['/upload']" routerLinkActive="router-link-active">upload</a>
-        </div>
-        <div class="row">
-            <!-- <div class="col-md-8">
-                this is it
-            </div> -->
-            <div class="col-md-4">
-                <div class="content-section">
-                    <h3>Our Sidebar</h3>
-                    <p class='text-muted'>You can put any information here you'd like.</p>
-                    <ul class="list-group">
-                        <li class="list-group-item list-group-item-light">Latest Posts</li>
-                        <li class="list-group-item list-group-item-light">Announcements</li>
-                        <li class="list-group-item list-group-item-light">Calendars</li>
-                        <li class="list-group-item list-group-item-light">etc</li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </main>
 
 
     <!-- Optional JavaScript -->
@@ -73,3 +45,4 @@
 </body>
 
 </html>
+<router-outlet></router-outlet>
