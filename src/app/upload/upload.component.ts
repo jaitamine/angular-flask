@@ -17,7 +17,8 @@ export class UploadComponent implements OnInit {
 
   fileToUpload: File = null;
   title: string = null;
-  response: any;
+  response: any [];
+  msg : string;
 
 
   constructor(private uploadService: AuthenticationService) { }
@@ -35,15 +36,21 @@ export class UploadComponent implements OnInit {
       alert('You must choose a file first!');
     } else {
       this.uploadService.postFile(this.fileToUpload)
-        .subscribe(data => { console.log(data), this.response=data['predictions']},
+        .subscribe(data => { console.log(data), this.response=data['predictions'], console.log(this.response);
+        if (this.response[0] === 0){
+          this.msg = "the employee will not leave";
+        }
+      else {this.msg = "the employee will leave"}},
           error => {
             alert('Error in uploading!'); console.log(error);
 
             //  window.location.reload(true);
           }
-
+          
         );
     }
+    
+
   }
 
   success(): void {

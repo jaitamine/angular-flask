@@ -41,14 +41,17 @@ export class AuthenticationService {
     }
 
     logout() {
-
+        
+        const endpoint = 'http://localhost:5000/upload/save_file';
         this.jwtToken = null;
         localStorage.removeItem('token');
+        // return this.http.post(endpoint, );
+        // need to persist thr blacklisted tokens
     }
 
     loggedIn(){
 
-        return !!localStorage.getItem('token');
+        return !!localStorage.getItem('token');;
     }
 
     isAdmin() {
