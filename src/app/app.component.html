@@ -11,11 +11,12 @@
 
     <title>Flask classification</title>
 
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
 
+</head>
 <body>
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="/">HR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
@@ -24,7 +25,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="/">Home</a>
+                        <a class="nav-item nav-link" href="/home">Home</a>
                         <a class="nav-item nav-link" href="/about">About</a>
                     </div>
                     <!-- Navbar Right Side -->
@@ -34,15 +35,13 @@
                     </div>
                 </div>
             </div>
-            
         </nav>
-    </header>
-
-
+       
+        <router-outlet></router-outlet>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
+    
 </body>
 
 </html>
-<router-outlet></router-outlet>
