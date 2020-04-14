@@ -10,8 +10,11 @@ import { User } from 'src/entities/user';
 })
 export class RegistrationComponent implements OnInit {
   user: any;
+  fullname: any;
+  email: any;
+  password: any; 
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(public authService: AuthenticationService, public router: Router) { }
 
   ngOnInit() {
   }

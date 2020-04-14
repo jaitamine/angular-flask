@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 export class AppComponent {
   title = 'Angular';
   status = true;
-  constructor(private authService: AuthenticationService, private router: Router) {
+  constructor(public authService: AuthenticationService, public router: Router) {
   }
   onLogout() {
 

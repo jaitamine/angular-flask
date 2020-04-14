@@ -11,8 +11,10 @@ import { VirtualTimeScheduler } from 'rxjs';
 export class LoginComponent implements OnInit {
   mode: number;
   jwt : any;
-  
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  fullname: any;
+  email: any;
+  password: any; 
+  constructor(public authService: AuthenticationService, public router: Router) { }
 
   ngOnInit() {
 
