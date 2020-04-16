@@ -1,6 +1,7 @@
+import { HeaderComponent } from './header/header.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
@@ -18,6 +19,8 @@ import { ResultComponent } from './result/result.component';
 import { ManagerComponent } from './manager/manager.component';
 import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { HomeComponent } from './home/home.component';
     ResultComponent,
     ManagerComponent,
     AboutComponent,
-    HomeComponent
+    HomeComponent,
+    SigninComponent,
+    SignupComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -37,7 +43,8 @@ import { HomeComponent } from './home/home.component';
     JwtModule,
     AppRoutingModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
 
   ],
   providers: [AuthenticationService, UploadService],
