@@ -5,8 +5,11 @@ import { UploadService } from 'src/service/upload.service';
 import { Resp } from 'src/entities/resp';
 import { HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from 'src/service/authentication.service';
-
-
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFireStorage } from '@angular/fire/storage';
+import {Observable} from 'rxjs';
+import { catchError, finalize, map } from 'rxjs/operators';
+import {  AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -15,51 +18,28 @@ import { AuthenticationService } from 'src/service/authentication.service';
 export class UploadComponent implements OnInit {
 
 
-  fileToUpload: File = null;
-  title: string = null;
-  response: any [];
-  msg : string;
-
-
-  constructor(private uploadService: AuthenticationService) { }
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadState: Observable<string>;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
+  constructor(private uploadService: AuthenticationService, private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
   }
 
+  upload(event) {
 
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
+  const user = localStorage.getItem('user');
+  const id = Math.random().toString(36).substring(2);
+  this.ref = this.afStorage.ref(user + '/' + id);
+  this.task = this.ref.put(event.target.files[0]);
+  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+  this.uploadProgress = this.task.percentageChanges();
+  this.task.snapshotChanges().pipe(
+    finalize(() => this.downloadURL = this.ref.getDownloadURL())
+ )
+.subscribe();
   }
-
-  uploadFile() {
-    if (this.fileToUpload == null) {
-      alert('You must choose a file first!');
-    } else {
-      this.uploadService.postFile(this.fileToUpload)
-        .subscribe(data => { console.log(data), this.response=data['predictions'], console.log(this.response);
-        if (this.response[0] === 0){
-          this.msg = "the employee will not leave";
-        }
-      else {this.msg = "the employee will leave"}},
-          error => {
-            alert('Error in uploading!'); console.log(error);
-
-            //  window.location.reload(true);
-          }
-          
-        );
-    }
-    
-
-  }
-
-  success(): void {
-    alert('file ' + ' ' + this.title + 'uploaded!');
-    this.title = null;
-    this.fileToUpload = null;
-    //   this.handleFileInput(null);
-    //   (<HTMLInputElement>document.getElementById("file")).value = null;
-  }
-
 }
 

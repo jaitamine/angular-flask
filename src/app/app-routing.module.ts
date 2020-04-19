@@ -12,7 +12,7 @@ import { ManagerComponent } from './manager/manager.component';
 import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
-  { path: '', component: HeaderComponent },
+
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
@@ -20,8 +20,8 @@ const routes: Routes = [
   { path: 'manager', component: ManagerComponent },
 
   { path: 'upload', component: UploadComponent, children: [{ path: 'result', component: ResultComponent }] },
-  { path: 'auth/signup', component: SigninComponent },
-  { path: 'auth/signin', component: SignupComponent, pathMatch: 'full'  },
+  { path: 'auth/signin', component: SigninComponent , pathMatch: 'full' },
+  { path: 'auth/signup', component: SignupComponent, pathMatch: 'full'  },
 
 
 

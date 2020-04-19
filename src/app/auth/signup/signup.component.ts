@@ -34,6 +34,7 @@ export class SignupComponent implements OnInit {
     const password = this.signupForm.get('password').value;
     this.authService.createNewUser(email, password).then(
       () => {
+        localStorage.setItem('user', email);
         this.router.navigate(['/home']);
       },
       (error) => {

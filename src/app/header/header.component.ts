@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/service/authentication.service';
 import * as firebase from 'firebase';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
  
   isAuth: boolean;
 
-  constructor(private authService: AuthenticationService) { }
+  constructor(private authService: AuthenticationService, private router:Router) { }
 
   ngOnInit() {
     firebase.auth().onAuthStateChanged(
@@ -26,7 +27,11 @@ export class HeaderComponent implements OnInit {
   }
 
   onSignOut() {
+    this.router.navigate(['/home']);
     this.authService.signOutUser();
+  }
+  upload(){
+    this.router.navigate(['/upload']);
   }
 
 }

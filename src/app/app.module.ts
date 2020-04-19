@@ -21,6 +21,13 @@ import { AboutComponent } from './about/about.component';
 import { HomeComponent } from './home/home.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,16 @@ import { SignupComponent } from './auth/signup/signup.component';
     AppRoutingModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyCAlHruZTXVqkKFFASkaWXrJwkDo_7Mbuk",
+      authDomain: "angular-datebase.firebaseapp.com",
+      databaseURL: "https://angular-datebase.firebaseio.com",
+      projectId: "angular-datebase",
+      storageBucket: "angular-datebase.appspot.com",
+    }),
+    AngularFireStorageModule
+
 
   ],
   providers: [AuthenticationService, UploadService],
