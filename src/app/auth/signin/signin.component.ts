@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Router } from '@angular/router';
+import { Log } from 'src/service/log.service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -13,7 +14,7 @@ export class SigninComponent implements OnInit {
   signinForm: FormGroup;
   errorMessage: string;
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private authService: AuthenticationService, private router: Router, private log: Log) { }
 
   ngOnInit() {
     this.initForm();
@@ -34,6 +35,7 @@ export class SigninComponent implements OnInit {
         this.router.navigate(['/upload']);
       },
       (error) => {
+        this.log.logAngular('user authentication error- password/email : ');
         this.errorMessage = error;
       }
     );
