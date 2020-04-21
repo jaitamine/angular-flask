@@ -37,6 +37,8 @@ export class SigninComponent implements OnInit {
       (error) => {
         this.log.logAngular('user authentication error- password/email : ');
         this.errorMessage = error;
+        console.log(error.message);
+        this.log.logAngular(error.message);
       }
     );
   }

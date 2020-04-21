@@ -7,9 +7,10 @@ import { HttpResponse } from '@angular/common/http';
 import { AuthenticationService } from 'src/service/authentication.service';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
-import {  AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
+import { Log } from 'src/service/log.service';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
@@ -23,23 +24,27 @@ export class UploadComponent implements OnInit {
   uploadState: Observable<string>;
   uploadProgress: Observable<number>;
   downloadURL: Observable<string>;
-  constructor(private uploadService: AuthenticationService, private afStorage: AngularFireStorage) { }
+  constructor(private uploadService: AuthenticationService, private afStorage: AngularFireStorage, private log: Log) { }
 
   ngOnInit() {
   }
 
   upload(event) {
 
-  const user = localStorage.getItem('user');
-  const id = Math.random().toString(36).substring(2);
-  this.ref = this.afStorage.ref(user + '/' + id);
-  this.task = this.ref.put(event.target.files[0]);
-  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-  this.uploadProgress = this.task.percentageChanges();
-  this.task.snapshotChanges().pipe(
-    finalize(() => this.downloadURL = this.ref.getDownloadURL())
- )
-.subscribe();
+    const user = localStorage.getItem('user');
+    const id = Math.random().toString(36).substring(2);
+    this.ref = this.afStorage.ref(user + '/' + id);
+    this.task = this.ref.put(event.target.files[0]);
+    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.uploadProgress = this.task.percentageChanges();
+    this.task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = this.ref.getDownloadURL())
+    ).subscribe();
+    (error) => {
+      console.log(error.message)
+      this.log.logAngular(error.message);
+    };
   }
+
 }
 
