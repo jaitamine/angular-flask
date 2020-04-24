@@ -19,7 +19,6 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'manager', component: ManagerComponent },
-
   { path: 'upload', component: UploadComponent},
   { path: 'auth/signin', component: SigninComponent , pathMatch: 'full' },
   { path: 'auth/signup', component: SignupComponent, pathMatch: 'full'  },
