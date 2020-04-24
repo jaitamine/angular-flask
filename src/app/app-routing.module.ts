@@ -13,13 +13,14 @@ import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
+  {path: 'result', component:ResultComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'manager', component: ManagerComponent },
 
-  { path: 'upload', component: UploadComponent, children: [{ path: 'result', component: ResultComponent }] },
+  { path: 'upload', component: UploadComponent},
   { path: 'auth/signin', component: SigninComponent , pathMatch: 'full' },
   { path: 'auth/signup', component: SignupComponent, pathMatch: 'full'  },
 

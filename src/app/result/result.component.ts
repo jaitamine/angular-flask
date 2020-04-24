@@ -8,10 +8,10 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ResultComponent implements OnInit {
 
   @Input() receivedResponse: Response;
-
+  results
   constructor() { }
 
   ngOnInit() {
+    this.results=localStorage.getItem('rsults');
   }
-
 }

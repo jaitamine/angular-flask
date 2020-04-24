@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
   onSignOut() {
     this.router.navigate(['/home']);
     this.authService.signOutUser();
+    localStorage.clear();
   }
   upload(){
     this.router.navigate(['/upload']);

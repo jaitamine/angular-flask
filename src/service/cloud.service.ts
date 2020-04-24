@@ -6,15 +6,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class Cloud {
     URL = 'https://us-central1-rh-click-version-1.cloudfunctions.net/predict-1';
     json;
-    
+    result:string;
     constructor(private http: HttpClient) { }
     cloud(data1: any[],data2:any[]) {
         let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
         let options = { headers: headers };
-      return this.http.post<any[]>(this.URL, JSON.stringify({"list":[data1,data2]}),options).toPromise().then((data3: any[] ) => {
-      //  this.json = JSON.stringify(data3.json);
-       console.log(data3);
+     return this.http.post<Object>(this.URL, JSON.stringify({"list":[data1,data2]}),options).toPromise().then((data3 ) => {
+      this.result=JSON.stringify(data3);
+      localStorage.setItem("rsults",this.result);
+      console.log(this.result)
+       
       });
     }
+    
 
 }
