@@ -7,7 +7,6 @@ import { Resp } from 'src/entities/resp';
 
 @Injectable({ providedIn: 'root' })
 export class Log {
-
   json;
   URL = 'https://hooks.slack.com/services/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';
   constructor(private http: HttpClient) { }

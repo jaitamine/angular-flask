@@ -1,3 +1,4 @@
+import { Cloud } from './../../service/cloud.service';
 
 import { Component, OnInit, Input, Output } from '@angular/core';
 
@@ -11,20 +12,21 @@ import { Observable } from 'rxjs';
 import { catchError, finalize, map } from 'rxjs/operators';
 import { AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { Log } from 'src/service/log.service';
+import * as Papa from 'papaparse';
 @Component({
   selector: 'app-upload',
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent implements OnInit {
-
-
+  dataList : any[];
+data3;
   ref: AngularFireStorageReference;
   task: AngularFireUploadTask;
   uploadState: Observable<string>;
   uploadProgress: Observable<number>;
   downloadURL: Observable<string>;
-  constructor(private uploadService: AuthenticationService, private afStorage: AngularFireStorage, private log: Log) { }
+  constructor(private cloud: Cloud ,private uploadService: AuthenticationService, private afStorage: AngularFireStorage, private log: Log) { }
 
   ngOnInit() {
   }
@@ -44,6 +46,26 @@ export class UploadComponent implements OnInit {
       console.log(error.message)
       this.log.logAngular(error.message);
     };
+  }
+  onChange(files: File[]){
+    
+    if(files[0]){
+      console.log(files[0]);
+      Papa.parse(files[0], {
+        
+        skipEmptyLines: true,
+        complete: (result,file) => {
+          console.log(result);
+          this.dataList = result.data;
+          let numberArray1 = this.dataList[0].map(Number);
+          let numberArray2 = this.dataList[1].map(Number);
+          console.log(numberArray1);
+          console.log(numberArray2);
+          // this.data3=this.cloud.cloud(numberArray1,numberArray2);
+          console.log(this.cloud.cloud(numberArray1,numberArray2))
+        }
+      });
+    }
   }
 
 }
