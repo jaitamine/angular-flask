@@ -15,14 +15,15 @@
       <br>
       <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
           File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+          <input type="button" value="start processing" (click)="navugationResult()"/>
           <img [src]="downloadSrc" width="100" height="100"/>
+          
       </div>
-    
       <br>
     </div>
   </div>
 </div>
-<input type="file" name="files" class="form-control" 
+<!-- <input type="file" name="files" class="form-control" 
 #uploads  (change)="onChange(uploads.files)" multiple
 value="process"/>               
-<a (click)="navugationResult()">Results</a>
+<a (click)="navugationResult()">Results</a> -->

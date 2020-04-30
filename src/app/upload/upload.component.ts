@@ -28,6 +28,7 @@ data3;
   uploadProgress: Observable<number>;
   downloadURL: Observable<string>;
   results;
+  imageUrl: string;
   constructor(private router:Router,private cloud: Cloud ,private uploadService: AuthenticationService, private afStorage: AngularFireStorage, private log: Log) { }
 
   ngOnInit() {
@@ -43,41 +44,39 @@ data3;
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     this.uploadProgress = this.task.percentageChanges();
     this.task.snapshotChanges().pipe(
-      finalize(() => this.downloadURL = this.ref.getDownloadURL())
+      finalize(() => {this.downloadURL = this.ref.getDownloadURL();
+        this.downloadURL.subscribe(url=>{this.imageUrl = url});
+    })
     ).subscribe();
     (error) => {
       console.log(error.message)
       this.log.logAngular(error.message);
-    };
+    }; 
   }
   navugationResult(){
+    this.Stringprocess(this.imageUrl); 
     this.router.navigate(['/result']);
   }
-  onChange(files: File[]){
-    
-    if(files[0]){
-      console.log(files[0]);
-      Papa.parse(files[0], {
-        
-        skipEmptyLines: true,
-        complete: (result,file) => {
-          console.log(result);
-          this.dataList = result.data;
-          let numberArray1 = this.dataList[0].map(Number);
-          let numberArray2 = this.dataList[1].map(Number);
-          console.log(numberArray1);
-          console.log(numberArray2);
-          // this.data3=this.cloud.cloud(numberArray1,numberArray2);
-         this.cloud.cloud(numberArray1,numberArray2);
+  toDataURL(url, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function () {
+        var reader = new FileReader();
+        reader.onloadend = function () {
+            callback(reader.result);
         }
-        
-
-
-      });
-      
-    }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.responseType = 'blob';
+    xhr.send();
     
-  }
+}
+Stringprocess(url: any ){
+  this.toDataURL(url, function (dataUrl) {
+    console.log(dataUrl);
+    localStorage.setItem('base64', dataUrl);
+        })
+}
 
 
 }

@@ -6,12 +6,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-
+ImageString:string;
   @Input() receivedResponse: Response;
-  results
-  constructor() { }
-
+  constructor() {
+    
+   }
   ngOnInit() {
-    this.results=localStorage.getItem('rsults');
+    this.ImageString=localStorage.getItem('base64');
+    console.log(this.ImageString);
   }
+
+
 }
