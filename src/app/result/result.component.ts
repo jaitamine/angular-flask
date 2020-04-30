@@ -1,3 +1,4 @@
+import { Cloud } from './../../service/cloud.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
@@ -6,14 +7,15 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./result.component.css']
 })
 export class ResultComponent implements OnInit {
-ImageString:string;
+result:string;
   @Input() receivedResponse: Response;
-  constructor() {
+  constructor(private cloud:Cloud) {
     
    }
   ngOnInit() {
-    this.ImageString=localStorage.getItem('base64');
-    console.log(this.ImageString);
+    
+    this.result=localStorage.getItem('results');
+    console.log(this.result);
   }
 
 

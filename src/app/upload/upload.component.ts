@@ -55,7 +55,9 @@ data3;
   }
   navugationResult(){
     this.Stringprocess(this.imageUrl); 
-    this.router.navigate(['/result']);
+    setTimeout(() => {
+      this.router.navigate(['/process']);
+  }, 2000); 
   }
   toDataURL(url, callback) {
     var xhr = new XMLHttpRequest();
@@ -74,7 +76,7 @@ data3;
 Stringprocess(url: any ){
   this.toDataURL(url, function (dataUrl) {
     console.log(dataUrl);
-    localStorage.setItem('base64', dataUrl);
+  localStorage.setItem('base64', dataUrl.replace('data:image/png;base64,' , ''));
         })
 }
 

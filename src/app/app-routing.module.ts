@@ -1,3 +1,4 @@
+import { ProcessComponent } from './process/process.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { HeaderComponent } from './header/header.component';
@@ -13,6 +14,7 @@ import { ResultComponent } from './result/result.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
+  {path:'process',component:ProcessComponent},
   {path: 'result', component:ResultComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },

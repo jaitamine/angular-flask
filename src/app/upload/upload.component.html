@@ -15,7 +15,7 @@
       <br>
       <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
           File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
-          <input type="button" value="start processing" (click)="navugationResult()"/>
+          <input type="button" value="start processing" (click)="navugationResult();this.disabled=true;" />
           <img [src]="downloadSrc" width="100" height="100"/>
           
       </div>

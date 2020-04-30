@@ -24,6 +24,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/storage';
+import { ProcessComponent } from './process/process.component';
 
 
 
@@ -41,7 +42,8 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     HomeComponent,
     SigninComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    ProcessComponent
   ],
   imports: [
     CommonModule,
