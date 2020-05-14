@@ -7,7 +7,9 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthenticationService {
-    private host = 'http://localhost:5000';
+    private host = 'http://127.0.0.1:9090/upload';
+    private login_host = 'http://127.0.0.1:5000'
+    private host_cloud = 'https://imagepredict-bnbtuguipq-ew.a.run.app/upload '
     private jwtToken = null;
     private roles: any[] = [];
   
@@ -18,7 +20,7 @@ export class AuthenticationService {
 
     login(user) {
         //    observe response pour ne pas convertir l'objet en json et recuperer directement la requete
-        return this.http.post(this.host + '/auth/login', user, { observe: 'response' });
+        return this.http.post(this.login_host + '/auth/login', user, { observe: 'response' });
 
     }
     saveToken(jwt: string) {
@@ -70,8 +72,6 @@ export class AuthenticationService {
         
         return this.http.post(this.host + '/save_file', doc, { headers: new HttpHeaders({ 'Authorization': this.jwtToken}) });
 
-
-
     }
     register(user) {
         return this.http.post(this.host + '/auth/register', user);
@@ -83,6 +83,23 @@ export class AuthenticationService {
         formData.append('file', fileToUpload);
         if (this.jwtToken == null) this.loadToken();
         return this.http.post(endpoint, formData, {headers: new HttpHeaders({ 'Authorization': this.jwtToken })});
+    }
+
+    postFile_cloud(fileToUpload: File) {
+        // tslint:disable-next-line:object-literal-key-quotes
+        
+        const formData = new FormData();
+        //formData.append('file', fileToUpload);
+        //if (this.jwtToken == null) this.loadToken();
+        return this.http.post(this.host_cloud, fileToUpload);
+
+    }
+
+    postFile_formdata( fileToUpload: File) {
+        const endpoint = this.host;
+        const formData = new FormData();
+        formData.append('file', fileToUpload);
+        return this.http.post(endpoint, formData);
     }
     
 

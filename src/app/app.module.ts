@@ -16,6 +16,7 @@ import { UploadService } from 'src/service/upload.service';
 import { RouterModule } from '@angular/router';
 import { ResultComponent } from './result/result.component';
 import { ManagerComponent } from './manager/manager.component';
+import { resultPipe } from 'src/pipes/resultPipe.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ManagerComponent } from './manager/manager.component';
     LoginComponent,
     RegistrationComponent,
     ResultComponent,
-    ManagerComponent
+    ManagerComponent,
+    resultPipe
   ],
   imports: [
     CommonModule,

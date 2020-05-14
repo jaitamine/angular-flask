@@ -11,10 +11,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'manager', component: ManagerComponent },
-
-  { path: 'upload', component: UploadComponent, children: [{ path: 'result', component: ResultComponent }] }
-
-
+  { path: 'result', component: ResultComponent },
+  { path: 'upload', component: UploadComponent }
+  
 
 ];
 
