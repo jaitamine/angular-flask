@@ -1,0 +1,138 @@
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-3">
+      <div class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <img [src]="imageUser" class="img-responsive" alt="" />
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            {{ username }}
+          </div>
+          <div class="profile-usertitle-job">
+            {{ email }}
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+        <!-- SIDEBAR BUTTONS -->
+        <div class="profile-userbuttons">
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            (click)="goupload()"
+          >
+            new process
+          </button>
+        </div>
+        <!-- END SIDEBAR BUTTONS -->
+        <!-- SIDEBAR MENU -->
+        <div class="profile-usermenu">
+          <ul class="nav">
+            <li class="active">
+              <a href="#">
+                <i class="glyphicon glyphicon-home"></i>
+                Overview
+              </a>
+            </li>
+            <li>
+              <a href="https://codepen.io/jasondavis/pen/jVRwaG?editors=1000">
+                <i class="glyphicon glyphicon-user"></i>
+                Account Settings
+              </a>
+            </li>
+            <li>
+              <a href="#" target="_blank">
+                <i class="glyphicon glyphicon-ok"></i>
+                Tasks
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <i class="glyphicon glyphicon-flag"></i>
+                Help
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- END MENU -->
+        <div class="portlet light bordered">
+          <!-- STAT -->
+          <div class="row list-separated profile-stat">
+            <div class="col-md-4 col-sm-4 col-xs-6">
+              <div class="uppercase profile-stat-title">
+                {{ numberOfImage }}
+              </div>
+              <div class="uppercase profile-stat-text">
+                number of images processed
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-6">
+              <div class="uppercase profile-stat-title">51</div>
+              <div class="uppercase profile-stat-text">Tasks</div>
+            </div>
+          </div>
+          <!-- END STAT -->
+          <div>
+            <h4 class="profile-desc-title">{{ user }}</h4>
+            <span class="profile-desc-text">
+              Lorem ipsum dolor sit amet diam nonummy nibh dolore.
+            </span>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-globe"></i>
+              <a href="https://www.apollowebstudio.com">apollowebstudio.com</a>
+            </div>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-twitter"></i>
+              <a href="https://www.twitter.com/jasondavisfl/">@jasondavisfl</a>
+            </div>
+            <div class="margin-top-20 profile-desc-link">
+              <i class="fa fa-facebook"></i>
+              <a href="https://www.facebook.com/">JasonDavisFL</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="profile-content">
+        Liste des images et résultats
+        <table>
+          <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Image</th>
+            <th scope="col">result</th>
+            <th scope="col">view as dicom</th>
+          </tr>
+          <tr *ngFor="let image of List">
+            <th>{{ image.date }}</th>
+            <th>
+              <a href="{{ image.imageUrl }}"
+                ><img src="data:image/jpeg;base64,{{ image.image64 }}" />
+              </a>
+            </th>
+            <th>
+              any: {{ image.result.any }} <br />
+              epidural: {{ image.result.epidural }} <br />
+              intraparenchymal: {{ image.result.intraparenchymal }} <br />
+              intraventricular: {{ image.result.intraventricular }}<br />
+              subarachnoid: {{ image.result.subarachnoid }} <br />
+              subdural: {{ image.result.subdural }}
+            </th>
+            <th>
+              <button
+                type="button"
+                title="select images"
+                (click)="viewAsDicom(image.imageUrl)"
+              >
+                view as dicom
+              </button>
+            </th>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
