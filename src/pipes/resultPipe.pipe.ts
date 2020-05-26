@@ -1,5 +1,4 @@
 import { PipeTransform, Pipe } from '@angular/core';
-
 @Pipe({name: 'keys'})
 export class resultPipe implements PipeTransform {
   transform(value, args:string[]) : any {

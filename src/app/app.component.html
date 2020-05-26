@@ -11,11 +11,15 @@
 
     <title>Flask classification</title>
 
-</head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,300' rel='stylesheet' type='text/css'>
+        
 
+</head>
 <body>
-    <header class="site-header">
-        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <!-- <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="/">HR</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
@@ -24,25 +28,36 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link" href="/">Home</a>
+                        <a class="nav-item nav-link" href="/home">Home</a>
                         <a class="nav-item nav-link" href="/about">About</a>
                     </div>
-                    <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         <a *ngIf="!authService.loggedIn()" class="nav-item nav-link" routerLink='/login'>login</a>
                         <a *ngIf="authService.loggedIn()" class="nav-item nav-link" (click)= "onLogout()">logout</a>
                     </div>
                 </div>
             </div>
-            
         </nav>
-    </header>
-
-
+       -->
+       <app-header></app-header>
+        <router-outlet></router-outlet>
+    
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
+    <footer>
+       
+          <div class="footer">
+            <div id="button"></div>
+          <div id="container">
+          <div id="cont">
+          <div class="footer_center">
+                 <h3 style="color: white;">you can contact the project team by email of <a href = "mailto:jait.amine9@gmail.com"> team leader</a></h3>
+                 
+          </div>
+          </div>
+          </div>
+          </div>
+      </footer>
 </body>
 
 </html>
-<router-outlet></router-outlet>
