@@ -10,7 +10,7 @@ import { ResultsService } from 'src/service/results.service';
 })
 export class ResultComponent implements OnInit {
   results:any;
-  result: any;
+  // result: any;
   @Input() receivedResponse: Response;
   constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log) {
     resultsService.getJSONData().subscribe(data=>{
@@ -20,15 +20,15 @@ export class ResultComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.result = localStorage.getItem('results');
-    console.log(this.result);
-    (error) => {
-      console.log(error.message);
-      this.log.logAngular(error.message);
-    };
-    if(this.result==null){
-      this.result='there is a problem during the cloud response';
-    };
+    // this.result = localStorage.getItem('results');
+    // console.log(this.result);
+    // (error) => {
+    //   console.log(error.message);
+    //   this.log.logAngular(error.message);
+    // };
+    // if(this.result==null){
+    //   this.result='there is a problem during the cloud response';
+    // };
     
    
   }

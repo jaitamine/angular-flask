@@ -38,6 +38,7 @@ import { resultPipe } from "src/pipes/resultPipe.pipe";
 import { DcmDisplayComponent } from "./dcm-display/dcm-display.component";
 import { DicomViewerModule } from "ng-dicomviewer";
 import { viewDicom } from "src/service/viewDicom.service";
+import { CornerstoneDirective } from 'projects/dicom-viewer/src/lib/cornerstone.directive';
 
 @NgModule({
   declarations: [
@@ -54,11 +55,11 @@ import { viewDicom } from "src/service/viewDicom.service";
     HeaderComponent,
     ProcessComponent,
     DashboardComponent,
-    FileSelectDirective,
     ListComponent,
     InformationComponent,
     resultPipe,
     DcmDisplayComponent,
+    CornerstoneDirective
   ],
   imports: [
     CommonModule,
