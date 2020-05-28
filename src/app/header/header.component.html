@@ -5,7 +5,7 @@
           <a routerLink="home">HOME</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active">
           <a class="nav-item nav-link" href="/about">About</a>
         </li>
@@ -14,19 +14,28 @@
         <li routerLinkActive="active" *ngIf="!isAuth">
           <a routerLink="auth/signin">Sign-in </a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" *ngIf="!isAuth">
           <a routerLink="auth/signup">Create an account</a>
         </li>
+      </ul>
+        <ul class="nav navbar-nav navbar-right ">
         <li>
           <a (click)="upload()"
              style="cursor:pointer"
              *ngIf="isAuth">user space</a>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right ">
         <li>
           <a (click)="onSignOut()"
              style="cursor:pointer"
              *ngIf="isAuth">Logout</a>
         </li>
       </ul>
+   
     </div>
   </nav>
+
+  

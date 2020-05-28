@@ -19,11 +19,7 @@
         <!-- END SIDEBAR USER TITLE -->
         <!-- SIDEBAR BUTTONS -->
         <div class="profile-userbuttons">
-          <button
-            type="button"
-            class="btn btn-success btn-sm"
-            (click)="goupload()"
-          >
+          <button type="button" class="btn btn-success btn-sm" (click)="goupload()">
             new prediction
           </button>
         </div>
@@ -37,18 +33,8 @@
                 Overview
               </a>
             </li>
-            <li>
-              <a href="https://codepen.io/jasondavis/pen/jVRwaG?editors=1000">
-                <i class="glyphicon glyphicon-user"></i>
-                Account Settings
-              </a>
-            </li>
-            <li>
-              <a href="#" target="_blank">
-                <i class="glyphicon glyphicon-ok"></i>
-                Tasks
-              </a>
-            </li>
+          
+
             <li>
               <a href="#">
                 <i class="glyphicon glyphicon-flag"></i>
@@ -59,40 +45,8 @@
         </div>
         <!-- END MENU -->
         <div class="portlet light bordered">
-          <!-- STAT -->
-          <div class="row list-separated profile-stat">
-            <div class="col-md-4 col-sm-4 col-xs-6">
-              <div class="uppercase profile-stat-title">
-                {{ numberOfImage }}
-              </div>
-              <div class="uppercase profile-stat-text">
-                number of images processed
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-4 col-xs-6">
-              <div class="uppercase profile-stat-title">51</div>
-              <div class="uppercase profile-stat-text">Tasks</div>
-            </div>
-          </div>
-          <!-- END STAT -->
-          <div>
-            <h4 class="profile-desc-title">{{ user }}</h4>
-            <span class="profile-desc-text">
-              Lorem ipsum dolor sit amet diam nonummy nibh dolore.
-            </span>
-            <div class="margin-top-20 profile-desc-link">
-              <i class="fa fa-globe"></i>
-              <a href="https://www.apollowebstudio.com">apollowebstudio.com</a>
-            </div>
-            <div class="margin-top-20 profile-desc-link">
-              <i class="fa fa-twitter"></i>
-              <a href="https://www.twitter.com/jasondavisfl/">@jasondavisfl</a>
-            </div>
-            <div class="margin-top-20 profile-desc-link">
-              <i class="fa fa-facebook"></i>
-              <a href="https://www.facebook.com/">JasonDavisFL</a>
-            </div>
-          </div>
+         
+
         </div>
       </div>
     </div>
@@ -103,30 +57,26 @@
           <tr>
             <th scope="col">Date</th>
             <th scope="col">Image</th>
-            <th scope="col">result</th>
-            <th scope="col">view as dicom</th>
+            <th scope="col">Resultat</th>
+            <th scope="col">Inspecter comme dicom</th>
           </tr>
           <tr *ngFor="let image of List">
             <th>{{ image.date }}</th>
             <th>
-              <a href="{{ image.imageUrl }}"
-                ><img src="data:image/jpeg;base64,{{ image.image64 }}" />
-              </a>
+              <img src="data:image/jpeg;base64,{{ image.image64 }}" />
+              <!-- <a href="{{ image.imageUrl }}"></a>
+              </a> -->
             </th>
             <th>
-              any: {{ image.result.any }} <br />
+              hematome: {{ image.result.any }} <br />
               epidural: {{ image.result.epidural }} <br />
-              intraparenchymal: {{ image.result.intraparenchymal }} <br />
-              intraventricular: {{ image.result.intraventricular }}<br />
-              subarachnoid: {{ image.result.subarachnoid }} <br />
-              subdural: {{ image.result.subdural }}
+              intra-parenchymateux: {{ image.result.intraparenchymal }} <br />
+              intraventriculair: {{ image.result.intraventricular }}<br />
+              sous-arachnoïdien: {{ image.result.subarachnoid }} <br />
+              sous-dural: {{ image.result.subdural }}
             </th>
             <th>
-              <button
-                type="button"
-                title="select images"
-                (click)="viewAsDicom(image.imageUrl)"
-              >
+              <button type="button" title="select images" (click)="viewAsDicom(image.imageUrl)">
                 view as dicom
               </button>
             </th>
