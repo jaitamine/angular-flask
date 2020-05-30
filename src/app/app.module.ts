@@ -22,8 +22,8 @@ import { HomeComponent } from "./home/home.component";
 import { SigninComponent } from "./auth/signin/signin.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AngularFireModule } from "@angular/fire";
-import { environment } from "src/environments/environment";
 import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ProcessComponent } from "./process/process.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { FileSelectDirective } from "ng2-file-upload";
@@ -39,6 +39,7 @@ import { DcmDisplayComponent } from "./dcm-display/dcm-display.component";
 import { DicomViewerModule } from "ng-dicomviewer";
 import { viewDicom } from "src/service/viewDicom.service";
 import { CornerstoneDirective } from 'projects/dicom-viewer/src/lib/cornerstone.directive';
+import { environment } from "../environments/environment"
 
 @NgModule({
   declarations: [
@@ -72,14 +73,9 @@ import { CornerstoneDirective } from 'projects/dicom-viewer/src/lib/cornerstone.
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyBlH_bXHxB1Sda9LLL0lD5gFg5sSB3pMqA",
-      authDomain: "angularradio.firebaseapp.com",
-      databaseURL: "https://angularradio.firebaseio.com",
-      projectId: "angularradio",
-      storageBucket: "gs://angularradio.appspot.com",
-    }),
-    DicomViewerModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    DicomViewerModule
   ],
   providers: [
     AuthenticationService,
