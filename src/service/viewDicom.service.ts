@@ -22,7 +22,7 @@ export class viewDicom {
     this.observer.next(a);
     localStorage.setItem("a", a);
     localStorage.setItem("load", "reload");
-    // this.router.navigate(["display"], { queryParams: { a } });
+    //this.router.navigate(["display"], { queryParams: { a } });
 
     this.router.navigate(["display"]);
   }

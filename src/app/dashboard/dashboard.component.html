@@ -63,9 +63,10 @@
           <tr *ngFor="let image of List">
             <th>{{ image.date }}</th>
             <th>
-              <img src="data:image/jpeg;base64,{{ image.image64 }}" />
-              <!-- <a href="{{ image.imageUrl }}"></a>
-              </a> -->
+              <a href="{{ image.imageUrl }}"
+                ><img src="data:image/jpeg;base64,{{ image.image64 }}" />
+              </a>
+              
             </th>
             <th>
               hematome: {{ image.result.any }} <br />
