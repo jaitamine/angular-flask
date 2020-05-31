@@ -10,7 +10,6 @@ import { ResultsService } from 'src/service/results.service';
 })
 export class ResultComponent implements OnInit {
   results:any;
-  // result: any;
   @Input() receivedResponse: Response;
   constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log) {
     resultsService.getJSONData().subscribe(data=>{
