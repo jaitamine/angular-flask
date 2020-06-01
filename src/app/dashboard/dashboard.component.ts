@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.imageUser = this.users[2];
     // this.List2 = this.userService.getListDicom(emailUser);
     this.List = this.userService.getList(emailUser);
-    this.numberOfImage = this.List.length;
+    // this.numberOfImage = this.List.length;
     setTimeout(() => {
 
     }, 300);
