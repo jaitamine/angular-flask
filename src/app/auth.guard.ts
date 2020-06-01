@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   constructor(private myRoute: Router){ }
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+    state: RouterStateSnapshot): Observable<boolean> | boolean {
       firebase.auth().onAuthStateChanged(
         (users) => {
           if (users) {
