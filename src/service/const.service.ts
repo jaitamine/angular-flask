@@ -27,7 +27,7 @@ export class ConstServer {
   }
   setList(List: any) {
     this.List = List;
-    this.router.navigate(["dashboard"]);
+    //this.router.navigate(["dashboard"]);
   }
   setListDicom(ListData: any[]) {
     this.List = ListData;

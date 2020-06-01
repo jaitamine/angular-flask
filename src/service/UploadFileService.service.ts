@@ -8,7 +8,7 @@ export class UploadFileService {
 
   getImageDetailList() {
     this.imageDetailList = this.firebase.list('users');
-    console.log(this.imageDetailList)
+    //console.log(this.imageDetailList)
   }
 
   insertImageDetails(imageDetails) {
