@@ -25,7 +25,7 @@ const routes: Routes = [
   { path: "process", component: ProcessComponent, canActivate: [AuthGuard] },
   { path: "result", component: ResultComponent, pathMatch: "prefix", canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
-  { path: "home", component: HomeComponent,  },
+  { path: "home", component: HomeComponent },
   { path: "about", component: AboutComponent },
   { path: "register", component: RegistrationComponent },
   { path: "manager", component: ManagerComponent },
