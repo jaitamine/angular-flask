@@ -94,7 +94,7 @@ export class Cloud {
       });
     setTimeout(() => {
       this.getList(email);
-      console.log(UserData);
+      // console.log(UserData);
       this.consServer.setCons(UserData[0], UserData[1], UserData[2]);
     }, 600);
     return UserData;
@@ -119,7 +119,7 @@ export class Cloud {
       });
     setTimeout(() => {
       this.getListDicom(email);
-      console.log(UserData);
+      // console.log(UserData);
       this.consServer.setCons(UserData[0], UserData[1], UserData[2]);
     }, 600);
     return UserData;

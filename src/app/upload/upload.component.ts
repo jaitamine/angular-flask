@@ -92,7 +92,7 @@ export class UploadComponent implements OnInit {
   }
   Stringprocess(url: any) {
     this.toDataURL(url, function (dataUrl) {
-      console.log(dataUrl);
+      //console.log(dataUrl);
       localStorage.setItem('base64', dataUrl.replace('data:image/png;base64,', ''));
     }),
       (error) => {
