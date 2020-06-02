@@ -15,7 +15,7 @@ export class ProcessComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
       this.router.navigate(['result']);
-    }, 30000)
+    }, 1000)
 
   }
 
