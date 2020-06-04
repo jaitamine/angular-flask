@@ -69,7 +69,7 @@ export class UploadComponent implements OnInit {
     this.Stringprocess(this.imageUrl);
     setTimeout(() => {
       this.router.navigate(['/process']);
-    }, 5000),
+    }, 100),
       (error) => {
         console.log(error.message);
         this.log.logAngular(error.message);
@@ -106,10 +106,11 @@ export class UploadComponent implements OnInit {
       this.cloud.postFile_formdata(this.fileToUpload)
         .subscribe(data => { console.log(data); this.response=data['predictions'];
         this.image64=data['image'];
-         console.log(this.response);
+         //console.log(this.response);
+         this.router.navigate(['process']);
          this.saveResults.setJSONData(this.response);
          this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response,this.image64);
-         this.router.navigate(['process']);
+         
           });
   }
 }

@@ -21,10 +21,9 @@
         </li>
       </ul>
         <ul class="nav navbar-nav navbar-right ">
-        <li>
-          <a (click)="upload()"
-             style="cursor:pointer"
-             *ngIf="isAuth">user space</a>
+        <li routerLinkActive="active">
+          <a  routerLink="dashboard" *ngIf="isAuth">
+             User space</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right ">
