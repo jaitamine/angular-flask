@@ -48,7 +48,6 @@ export class UploadComponent implements OnInit {
     var metadata = {
       contentType: 'dcm',
     };
-    
     this.task = this.ref.put(files[0]);
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     this.uploadProgress = this.task.percentageChanges();
