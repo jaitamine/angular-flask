@@ -163,7 +163,7 @@
   
   .hero {
     position: relative;
-    background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1352&q=80') no-repeat center center fixed;
+    background: url('https://images.unsplash.com/photo-1490093158370-1a6be674437b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=916&q=80') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -194,7 +194,7 @@
     width: 26px;
     height: 46px;
     border-radius: 13px;
-    border: 2px solid #ffffff;
+    border: 2px solid #050505;
     position: absolute;
     bottom: 40px;
     position: absolute;
@@ -207,7 +207,7 @@
     width: 2px;
     height: 2px;
     border-radius: 4px;
-    background: #ffffff;
+    background: #0a0a0a;
     border: 1px solid transparent;
     -webkit-animation-duration: 1s;
     animation-duration: 1s;
