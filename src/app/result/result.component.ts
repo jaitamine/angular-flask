@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Cloud } from './../../service/cloud.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Log } from 'src/service/log.service';
@@ -11,7 +12,8 @@ import { ResultsService } from 'src/service/results.service';
 export class ResultComponent implements OnInit {
   results:any;
   @Input() receivedResponse: Response;
-  constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log) {
+  constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log,
+    private rooter:Router) {
     resultsService.getJSONData().subscribe(data=>{
       this.results=data;
       // console.log(this.results); //<-- data is here
@@ -31,7 +33,9 @@ export class ResultComponent implements OnInit {
     
    
   }
-
+  goback(){
+    this.rooter.navigate(['/dashboard']);
+  }
 
 
 

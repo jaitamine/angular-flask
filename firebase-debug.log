@@ -1,0 +1,46 @@
+[debug] [2020-06-06T15:23:38.850Z] ----------------------------------------------------------------------
+[debug] [2020-06-06T15:23:38.851Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\admin\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2020-06-06T15:23:38.852Z] CLI Version:   7.8.1
+[debug] [2020-06-06T15:23:38.852Z] Platform:      win32
+[debug] [2020-06-06T15:23:38.852Z] Node Version:  v12.13.1
+[debug] [2020-06-06T15:23:38.853Z] Time:          Sat Jun 06 2020 16:23:38 GMT+0100 (GMT+01:00)
+[debug] [2020-06-06T15:23:38.853Z] ----------------------------------------------------------------------
+[debug] [2020-06-06T15:23:38.853Z] 
+[debug] [2020-06-06T15:23:38.858Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-06-06T15:23:38.858Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\admin\Documents\Projet Front\angular-flask
+
+Before we get started, keep in mind:
+
+  * You are initializing in an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2020-06-06T15:23:47.543Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/angular-datebase  
+ 
+[debug] [2020-06-06T15:23:48.131Z] <<< HTTP RESPONSE 200
+[info] i  Using project angular-datebase (angular-datebase)
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 
+[debug] [2020-06-06T15:23:56.492Z] >>> HTTP REQUEST GET https://www.gstatic.com/firebasejs/releases.json  
+ 
+[debug] [2020-06-06T15:23:56.970Z] <<< HTTP RESPONSE 200
