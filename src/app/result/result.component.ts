@@ -14,7 +14,7 @@ export class ResultComponent implements OnInit {
   constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log) {
     resultsService.getJSONData().subscribe(data=>{
       this.results=data;
-      console.log(this.results); //<-- data is here
+      // console.log(this.results); //<-- data is here
   });
   }
   ngOnInit() {
