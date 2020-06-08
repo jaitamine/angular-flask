@@ -1,37 +1,38 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-default justify-content-center">
     <div class="container-fluid">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active">
-          <a routerLink="home">HOME</a>
+          <a routerLink="home"><i class="fa fa-home" aria-hidden="true"> </i>HOME</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active">
-          <a class="nav-item nav-link" href="/about">About</a>
+          <a class="nav-item nav-link" href="/about"><i class="fa fa-info" aria-hidden="true"> </i> Projet TSSWIRA.COM</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" *ngIf="!isAuth">
-          <a routerLink="auth/signin">Sign-in </a>
+          <a routerLink="auth/signin"><i class="fa fa-sign-in" aria-hidden="true"> </i> Connectez-vous </a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
+      <!-- <ul class="nav navbar-nav navbar-right">
         <li routerLinkActive="active" *ngIf="!isAuth">
-          <a routerLink="auth/signup">Create an account</a>
+          <a routerLink="auth/signup"><i class="fa fa-user-plus" aria-hidden="true"></i>Create an account</a>
         </li>
-      </ul>
+      </ul> -->
         <ul class="nav navbar-nav navbar-right ">
         <li routerLinkActive="active">
           <a  routerLink="dashboard" *ngIf="isAuth">
-             User space</a>
+            <i class="fa fa-server" aria-hidden="true"></i> Votre Espace</a>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right ">
         <li>
           <a (click)="onSignOut()"
              style="cursor:pointer"
-             *ngIf="isAuth">Logout</a>
-        </li>
+             *ngIf="isAuth">Déconnecter</a>
+             <a routerLink="auth/signup" *ngIf="!isAuth"><i class="fa fa-user-plus" aria-hidden="true"></i> Create an account</a>
+            </li>
       </ul>
    
     </div>
