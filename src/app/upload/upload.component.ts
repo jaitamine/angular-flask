@@ -48,7 +48,6 @@ export class UploadComponent implements OnInit {
     var metadata = {
       contentType: 'dcm',
     };
-    
     this.task = this.ref.put(files[0]);
     this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
     this.uploadProgress = this.task.percentageChanges();
@@ -62,7 +61,7 @@ export class UploadComponent implements OnInit {
       })
     ).subscribe();
     (error) => {
-      console.log(error.message)
+    
       this.log.logAngular(error.message);
     };
   }
@@ -70,9 +69,9 @@ export class UploadComponent implements OnInit {
     this.Stringprocess(this.imageUrl);
     setTimeout(() => {
       this.router.navigate(['/process']);
-    }, 5000),
+    }, 100),
       (error) => {
-        console.log(error.message);
+   
         this.log.logAngular(error.message);
       };
   }
@@ -92,11 +91,11 @@ export class UploadComponent implements OnInit {
   }
   Stringprocess(url: any) {
     this.toDataURL(url, function (dataUrl) {
-      console.log(dataUrl);
+     
       localStorage.setItem('base64', dataUrl.replace('data:image/png;base64,', ''));
     }),
       (error) => {
-        console.log(error.message);
+      
         this.log.logAngular(error.message);
       };
   }
@@ -105,12 +104,13 @@ export class UploadComponent implements OnInit {
       alert('You must choose a file first!');
     } else {
       this.cloud.postFile_formdata(this.fileToUpload)
-        .subscribe(data => { console.log(data); this.response=data['predictions'];
+        .subscribe(data => {  this.response=data['predictions'];
         this.image64=data['image'];
-         console.log(this.response);
+         //console.log(this.response);
+         this.router.navigate(['process']);
          this.saveResults.setJSONData(this.response);
          this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response,this.image64);
-         this.router.navigate(['process']);
+         
           });
   }
 }

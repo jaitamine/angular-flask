@@ -39,8 +39,10 @@ export class SigninComponent implements OnInit {
     const password = this.signinForm.get("password").value;
     this.authService.signInUser(email, password).then(
       () => {
+        this.router.navigate(["dashboard"]);
         localStorage.setItem("user", email);
         this.cloud.getUser(email);
+        
       },
       (error) => {
         this.log.logAngular("user authentication error- password/email : ");

@@ -1,6 +1,9 @@
-<h6>hello resuls</h6>
+<h6>Prediction Results</h6>
 <span *ngFor="let entry of results | keys">
   <ul>         
     <li>{{entry.key}}: {{entry.value}}</li>
   </ul> 
-  </span>
+  </span><br/>
+  <button type="button" class="btn btn-success" (click)="goback()">
+    Afficher L'image dans votre Espace 
+  </button>

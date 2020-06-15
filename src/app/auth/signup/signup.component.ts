@@ -59,8 +59,9 @@ export class SignupComponent implements OnInit {
     sessionStorage.setItem("name", name);
     this.authService.createNewUser(email, password).then(
       () => {
+        this.router.navigate(["dashboard"]);
         localStorage.setItem("user", email);
-        this.router.navigate(["/auth/information"]);
+        
         // this.cloud.putUser(name,email,password,image);
       },
       (error) => {

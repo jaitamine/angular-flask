@@ -20,14 +20,14 @@ export class ConstServer {
   }
   setConsDicom(ImageUrlDicom) {
     this.imageUrl = ImageUrlDicom;
-    // this.router.navigate(["display"]);
+    this.router.navigate(["display"]);
   }
   getList() {
     return this.List;
   }
   setList(List: any) {
     this.List = List;
-    this.router.navigate(["dashboard"]);
+    //this.router.navigate(["dashboard"]);
   }
   setListDicom(ListData: any[]) {
     this.List = ListData;

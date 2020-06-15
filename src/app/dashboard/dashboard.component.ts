@@ -35,24 +35,21 @@ export class DashboardComponent implements OnInit {
     private dicom: viewDicom
   ) {}
   ngOnInit(): void {
-    this.getService.getImageDetailList();
+    // this.getService.getImageDetailList();
     this.username = this.user.getUsername();
-    console.log(this.email);
     let emailUser: string;
-    // localStorage.setItem("email", this.user.email);
+    localStorage.setItem("email", this.user.email);
     emailUser = localStorage.getItem("user");
     this.users = this.userService.getUser(emailUser);
-    console.log(this.users);
     this.email = this.users[1];
     this.imageUser = this.users[2];
     // this.List2 = this.userService.getListDicom(emailUser);
     this.List = this.userService.getList(emailUser);
-    this.numberOfImage = this.List.length;
-    // setTimeout(() => {
+    // this.numberOfImage = this.List.length;
+    setTimeout(() => {
 
-    // }, 300);
-    console.log(this.List);
-    console.log(this.List.length);
+    }, 300);
+    //console.log(this.List);
   }
   goupload() {
     this.router.navigate(["/upload"]);

@@ -29,6 +29,7 @@ export class Cloud {
     " https://console.firebase.google.com/project/angular-datebase/storage/angular-datebase.appspot.com/files~2F";
   fileUpload: FileUpload;
   private host_cloud = "https://imagepredict-bnbtuguipq-ew.a.run.app/upload";
+  private host = "http://127.0.0.1:7000"
   URL = "https://us-central1-rh-click-version-1.cloudfunctions.net/predict-1";
   URL2 =
     "https://us-central1-histopathology-hackathon.cloudfunctions.net/predict_image";
@@ -94,7 +95,7 @@ export class Cloud {
       });
     setTimeout(() => {
       this.getList(email);
-      console.log(UserData);
+      // console.log(UserData);
       this.consServer.setCons(UserData[0], UserData[1], UserData[2]);
     }, 600);
     return UserData;
@@ -119,7 +120,7 @@ export class Cloud {
       });
     setTimeout(() => {
       this.getListDicom(email);
-      console.log(UserData);
+      // console.log(UserData);
       this.consServer.setCons(UserData[0], UserData[1], UserData[2]);
     }, 600);
     return UserData;
@@ -159,7 +160,7 @@ export class Cloud {
         // List.push({"image64":snapshot.child('image64').val()})
       });
     setTimeout(() => {
-      this.consServer.setnumberOfImage(List.length);
+      //this.consServer.setnumberOfImage(List.length);
       this.consServer.setList(List);
     }, 500);
     return List;
