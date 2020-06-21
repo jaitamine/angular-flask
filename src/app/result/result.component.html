@@ -1,9 +1,42 @@
-<h6>Prediction Results</h6>
+<!-- <h6>Prediction Results</h6>
 <span *ngFor="let entry of results | keys">
   <ul>         
     <li>{{entry.key}}: {{entry.value}}</li>
   </ul> 
-  </span><br/>
+</span><br/>
   <button type="button" class="btn btn-success" (click)="goback()">
     Afficher L'image dans votre Espace 
-  </button>
+  </button> -->
+
+  <div class="container">
+    <div class="row profile">
+      <div class="col-md-9">
+
+  <div class="col-md-9">
+    <div class="profile-content">
+      Résultats
+  <table>
+    <tr>
+      <th scope="col">Fichier</th>
+      <th scope="col">Resultat</th>
+    </tr>
+  <tr *ngFor="let image of results">
+    <th>{{ image.filename }}</th>
+
+    <th>
+      hematome: {{ image.predictions.any }} <br />
+      epidural: {{ image.predictions.epidural }} <br />
+      intra-parenchymateux: {{ image.predictions.intraparenchymal }} <br />
+      intraventriculair: {{ image.predictions.intraventricular }}<br />
+      sous-arachnoïdien: {{ image.predictions.subarachnoid }} <br />
+      sous-dural: {{ image.predictions.subdural }}
+    </th>
+
+  </tr>
+  </table>
+    </div>
+  </div>
+  </div>
+
+    </div>
+  </div>

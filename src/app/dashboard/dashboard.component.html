@@ -56,18 +56,18 @@
         <table>
           <tr>
             <th scope="col">Date</th>
-            <th scope="col">Image</th>
+            <!-- <th scope="col">Image</th> -->
             <th scope="col">Resultat</th>
             <th scope="col">Inspecter comme dicom</th>
           </tr>
           <tr *ngFor="let image of List">
             <th>{{ image.date }}</th>
-            <th>
+            <!-- <th>
               <a 
                 ><img src="data:image/jpeg;base64,{{ image.image64 }}" />
               </a>
               
-            </th>
+            </th> -->
             <th>
               hematome: {{ image.result.any }} <br />
               epidural: {{ image.result.epidural }} <br />

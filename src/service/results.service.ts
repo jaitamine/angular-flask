@@ -8,6 +8,8 @@ export class ResultsService {
   jsonData: any;
   private dataSource = new BehaviorSubject({});
   data = this.dataSource.asObservable();
+  fileNames = this.dataSource.asObservable();
+
 
   constructor() {
     this.jsonData = {};
@@ -17,5 +19,13 @@ export class ResultsService {
   }
   getJSONData() {
     return this.data;
+  }
+
+  setFileNames(val: object) {
+    this.dataSource.next(val);
+  }
+
+  getFileNames() {
+    return this.fileNames;
   }
 }

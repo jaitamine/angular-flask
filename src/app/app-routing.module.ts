@@ -16,6 +16,7 @@ import { ManagerComponent } from "./manager/manager.component";
 import { ResultComponent } from "./result/result.component";
 import { AuthGuard } from "./auth.guard";
 import { DcmDisplayComponent } from "./dcm-display/dcm-display.component";
+import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
 
 const routes: Routes = [
   { path: "display", component: DcmDisplayComponent},
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: "register", component: RegistrationComponent },
   { path: "manager", component: ManagerComponent },
   { path: "upload", component: UploadComponent, pathMatch: "prefix", canActivate: [AuthGuard] },
+  { path: "upload-multiple", component: UploadMultipleComponent, pathMatch: "prefix", canActivate: [AuthGuard] },
   { path: "auth/signin", component: SigninComponent, pathMatch: "prefix" },
   { path: "auth/signup", component: SignupComponent, pathMatch: "prefix" },
   {

@@ -11,12 +11,15 @@ import { ResultsService } from 'src/service/results.service';
 })
 export class ResultComponent implements OnInit {
   results:any;
+  fileNames : any[] = []
   @Input() receivedResponse: Response;
   constructor(resultsService: ResultsService,private cloud: Cloud, private log: Log,
     private rooter:Router) {
     resultsService.getJSONData().subscribe(data=>{
       this.results=data;
-      // console.log(this.results); //<-- data is here
+      // this.fileNames = (data["file_name"]);
+      // console.log(this.fileNames);
+      console.log(this.results); //<-- data is here
   });
   }
   ngOnInit() {

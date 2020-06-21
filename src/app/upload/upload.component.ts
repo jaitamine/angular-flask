@@ -105,14 +105,13 @@ export class UploadComponent implements OnInit {
     } else {
       this.cloud.postFile_formdata(this.fileToUpload)
         .subscribe(data => {  this.response=data['predictions'];
-        this.image64=data['image'];
+        // this.image64=data['image'];
          //console.log(this.response);
          this.router.navigate(['process']);
          this.saveResults.setJSONData(this.response);
-         this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response,this.image64);
+         this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response);
          
           });
   }
 }
 }
-

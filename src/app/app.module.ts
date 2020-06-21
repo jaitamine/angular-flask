@@ -39,7 +39,8 @@ import { DcmDisplayComponent } from "./dcm-display/dcm-display.component";
 import { DicomViewerModule } from "ng-dicomviewer";
 import { viewDicom } from "src/service/viewDicom.service";
 import { CornerstoneDirective } from 'projects/dicom-viewer/src/lib/cornerstone.directive';
-import { environment } from "../environments/environment"
+import { environment } from "../environments/environment";
+import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component'
 
 @NgModule({
   declarations: [
@@ -60,7 +61,9 @@ import { environment } from "../environments/environment"
     InformationComponent,
     resultPipe,
     DcmDisplayComponent,
-    CornerstoneDirective
+    CornerstoneDirective,
+    UploadMultipleComponent,
+    FileSelectDirective
   ],
   imports: [
     CommonModule,

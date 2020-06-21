@@ -29,7 +29,7 @@ export class Cloud {
     " https://console.firebase.google.com/project/angular-datebase/storage/angular-datebase.appspot.com/files~2F";
   fileUpload: FileUpload;
   private host_cloud = "https://imagepredict-bnbtuguipq-ew.a.run.app/upload";
-  private host = "http://127.0.0.1:7000"
+  private host = "http://127.0.0.1:7000/test"
   URL = "https://us-central1-rh-click-version-1.cloudfunctions.net/predict-1";
   URL2 =
     "https://us-central1-histopathology-hackathon.cloudfunctions.net/predict_image";
@@ -100,10 +100,10 @@ export class Cloud {
     }, 600);
     return UserData;
   }
-  postFile_formdata(fileToUpload: File) {
-    const formData = new FormData();
-    formData.append("file", fileToUpload);
-    return this.http.post(this.host_cloud, formData);
+  postFile_formdata(form) {
+    // const formData = new FormData();
+    // formData.append("file", fileToUpload);
+    return this.http.post<any>(this.host, form);
   }
   getUserDicom(email: string): any[] {
     var UserData = [];
@@ -129,14 +129,14 @@ export class Cloud {
   putResultsAndImageAndUser(
     email: any,
     imageUrl: any,
-    result: any,
-    image64: any
+    result: any
+    // image64: any
   ) {
     firebase.database().ref("imageResults/").push({
       email: email,
       imageUrl: imageUrl,
       result: result,
-      image64: image64,
+      // image64: image64,
       date: new Date().toLocaleDateString(),
     });
   }
@@ -153,7 +153,7 @@ export class Cloud {
         List.push({
           imageUrl: snapshot.child("imageUrl").val(),
           result: snapshot.child("result").val(),
-          image64: snapshot.child("image64").val(),
+          // image64: snapshot.child("image64").val(),
           date: snapshot.child("date").val(),
         });
         // List.push({"result":snapshot.child("result").val()})

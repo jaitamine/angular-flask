@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
     //console.log(this.List);
   }
   goupload() {
-    this.router.navigate(["/upload"]);
+    this.router.navigate(["/upload-multiple"]);
   }
   viewAsDicom(a) {
     this.dicom.viewAsDicom(a); //emits the data to the parent
