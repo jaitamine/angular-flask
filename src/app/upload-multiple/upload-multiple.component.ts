@@ -47,24 +47,28 @@ export class UploadMultipleComponent implements OnInit {
     console.log(files);
     let requests = [];
     files.forEach((file) => {
-      const id = Math.random().toString(36).substring(2)+'.dcm';
-      //this.task = this.ref.put(file);
-      this.ref = this.afStorage.ref(user + '/' + id );
+      let id = Math.random().toString(36).substring(2)+'.dcm';
+      this.ref = this.afStorage.ref(user + '/' + id);
+      console.log(this.ref);
+      this.task = this.ref.put(file.rawFile);
+      console.log(this.task);
       let formData = new FormData();
       formData.append('file' , file.rawFile, file.name);
       // this.fileNames.push(file.name.replace(/\.[^/.]+$/, ""))
       finalize(() => {
-      this.downloadURL = this.ref.getDownloadURL();
-      this.downloadURL.subscribe(url => { this.imageUrl = url
-      console.log(this.imageUrl);
-      this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response)});})
-      requests.push(this.cloud.postFile_formdata(formData));     
+        this.downloadURL = this.ref.getDownloadURL();
+          this.downloadURL.subscribe(url => { this.imageUrl = url;
+            console.log(this.imageUrl);        
+          });
+        })
+          requests.push(this.cloud.postFile_formdata(formData));  
     });
 
     concat(...requests).subscribe(
       (res) => {
         console.log(res);
         // console.log(res[this.fileNames[0]]);
+        this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'), this.imageUrl, res['predictions']);
         this.response.push(res);
         // this.fileNames.shift();
         
@@ -74,6 +78,7 @@ export class UploadMultipleComponent implements OnInit {
         console.log(err);
       }
     );
+    
     this.router.navigate(['process']);
     this.saveResults.setJSONData(this.response);
   }
@@ -91,5 +96,45 @@ export class UploadMultipleComponent implements OnInit {
 //           });
 //   }
 // }
+upload_test() {  
+   
+  const user = localStorage.getItem('user');
+
+  let files = this.getFiles();
+  console.log(files);
+  let requests = [];
+  files.forEach((file) => {
+    let id = Math.random().toString(36).substring(2)+'.dcm';
+    this.ref = this.afStorage.ref(user + '/' + id);
+    this.task = this.ref.put(file.rawFile);
+    let formData = new FormData();
+    formData.append('file' , file.rawFile, file.name);
+    // this.fileNames.push(file.name.replace(/\.[^/.]+$/, ""))
+          
+          requests.push(this.cloud.postFile_formdata(formData)); 
+          
+        });
+
+
+  concat(...requests).subscribe(
+    (res) => {
+      
+      console.log(res);
+      // console.log(res[this.fileNames[0]]);
+      this.response.push(res);
+      this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),res['predictions']);
+      // this.fileNames.shift();
+      
+    },
+
+    (err) => {  
+      console.log(err);
+    }
+  );
+  
+  this.router.navigate(['process']);
+  this.saveResults.setJSONData(this.response);
+}
+
 }
 
