@@ -22,7 +22,7 @@ import { HomeComponent } from "./home/home.component";
 import { SigninComponent } from "./auth/signin/signin.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AngularFireModule } from "@angular/fire";
-import { AngularFireStorageModule } from "@angular/fire/storage";
+import { AngularFireStorageModule, AngularFireStorage } from "@angular/fire/storage";
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ProcessComponent } from "./process/process.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -40,7 +40,10 @@ import { DicomViewerModule } from "ng-dicomviewer";
 import { viewDicom } from "src/service/viewDicom.service";
 import { CornerstoneDirective } from 'projects/dicom-viewer/src/lib/cornerstone.directive';
 import { environment } from "../environments/environment";
-import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component'
+import { UploadMultipleComponent } from './upload-multiple/upload-multiple.component';
+import { DropzoneDirective } from './dropzone.directive';
+import { UploadTaskComponent } from './upload-task/upload-task.component'
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,9 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
     DcmDisplayComponent,
     CornerstoneDirective,
     UploadMultipleComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    DropzoneDirective,
+    UploadTaskComponent
   ],
   imports: [
     CommonModule,
@@ -82,6 +87,8 @@ import { UploadMultipleComponent } from './upload-multiple/upload-multiple.compo
   ],
   providers: [
     AuthenticationService,
+    AngularFireStorage,
+    AngularFirestore,
     UploadService,
     UploadFileService,
     AuthGuard,

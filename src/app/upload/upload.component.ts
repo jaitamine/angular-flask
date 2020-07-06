@@ -55,6 +55,7 @@ export class UploadComponent implements OnInit {
       finalize(() => {
       this.downloadURL = this.ref.getDownloadURL();
         this.downloadURL.subscribe(url => { this.imageUrl = url;
+          console.log(url);
           this.fileToUpload=files[0];
           this.uploadFile_formdata();
         });

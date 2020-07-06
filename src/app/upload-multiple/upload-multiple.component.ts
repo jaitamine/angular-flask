@@ -20,7 +20,8 @@ export class UploadMultipleComponent implements OnInit {
   task: AngularFireUploadTask;
   response: any[] = [];
   fileNames : any[] = [];
-  imageUrl: string;
+  requests : any[] = [];
+  
   downloadURL: Observable<string>;
 
 
@@ -29,112 +30,79 @@ export class UploadMultipleComponent implements OnInit {
   ngOnInit() {
   }
 
-  fileOverBase(event):  void {
-    this.hasBaseDropZoneOver  =  event;
-  }
+  // fileOverBase(event):  void {
+  //   this.hasBaseDropZoneOver  =  event;
+  // }
 
-  getFiles(): FileLikeObject[] {
-    return this.uploader.queue.map((fileItem) => {
-      return fileItem.file;
-    });
-  }
+  // getFiles(): FileLikeObject[] {
+  //   return this.uploader.queue.map((fileItem) => {
+  //     return fileItem.file;
+  //   });
+  // }
 
-  upload() {  
+  // upload() {  
 
-    const user = localStorage.getItem('user');
+  //   const user = localStorage.getItem('user');
 
-    let files = this.getFiles();
-    console.log(files);
-    let requests = [];
-    files.forEach((file) => {
-      let id = Math.random().toString(36).substring(2)+'.dcm';
-      this.ref = this.afStorage.ref(user + '/' + id);
-      console.log(this.ref);
-      this.task = this.ref.put(file.rawFile);
-      console.log(this.task);
-      let formData = new FormData();
-      formData.append('file' , file.rawFile, file.name);
-      // this.fileNames.push(file.name.replace(/\.[^/.]+$/, ""))
-      finalize(() => {
-        this.downloadURL = this.ref.getDownloadURL();
-          this.downloadURL.subscribe(url => { this.imageUrl = url;
-            console.log(this.imageUrl);        
-          });
-        })
-          requests.push(this.cloud.postFile_formdata(formData));  
-    });
+  //   let files = this.getFiles();
+  //   console.log(files);
+  //   files.forEach((file) => {
 
-    concat(...requests).subscribe(
-      (res) => {
-        console.log(res);
-        // console.log(res[this.fileNames[0]]);
-        this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'), this.imageUrl, res['predictions']);
-        this.response.push(res);
-        // this.fileNames.shift();
+  //     let formData = new FormData();
+  //     formData.append('file' , file.rawFile, file.name);
+  //     this.fileNames.push(file.rawFile);
+  //     this.requests.push(this.cloud.postFile_formdata(formData));  
+  //   });
+
+  //   concat(...this.requests).subscribe(
+  //     (res) => {
+  //       console.log(res);
+  //       this.response.push(res);       
+  //       let id = Math.random().toString(36).substring(2)+'.dcm';
+  //       this.ref = this.afStorage.ref(user + '/' + id);
+  //       console.log(this.ref);
+  //       this.task = this.ref.put(this.fileNames[0]);
+  //       this.fileNames.shift();
+  //       this.task.snapshotChanges().pipe(
+  //       finalize(async() => {          
+  //         this.downloadURL = await this.ref.getDownloadURL().toPromise();
+  //           this.downloadURL.subscribe(url => { 
+  //             this.cloud.putResultsAndImageAndUser(user, url, res['predictions']);           
+  //             console.log(url)
+  //           });
+  //         })
+  //       );
         
-      },
-
-      (err) => {  
-        console.log(err);
-      }
-    );
+  //     },
+  //     (err) => {  
+  //       console.log(err);
+  //     }
+  //   );
     
-    this.router.navigate(['process']);
-    this.saveResults.setJSONData(this.response);
+  //   this.router.navigate(['process']);
+  //   this.saveResults.setJSONData(this.response);
+  // }
+
+  isHovering: boolean;
+
+  files: File[] = [];
+
+  toggleHover(event: boolean) {
+    this.isHovering = event;
   }
 
-//   uploadFile_formdata() {
-
-//       this.cloud.postFile_formdata(this.fileToUpload)
-//         .subscribe(data => {  this.response=data['predictions'];
-//         this.image64=data['image'];
-//          //console.log(this.response);
-//          this.router.navigate(['process']);
-//          this.saveResults.setJSONData(this.response);
-//          this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response,this.image64);
-         
-//           });
-//   }
-// }
-upload_test() {  
-   
-  const user = localStorage.getItem('user');
-
-  let files = this.getFiles();
-  console.log(files);
-  let requests = [];
-  files.forEach((file) => {
-    let id = Math.random().toString(36).substring(2)+'.dcm';
-    this.ref = this.afStorage.ref(user + '/' + id);
-    this.task = this.ref.put(file.rawFile);
-    let formData = new FormData();
-    formData.append('file' , file.rawFile, file.name);
-    // this.fileNames.push(file.name.replace(/\.[^/.]+$/, ""))
-          
-          requests.push(this.cloud.postFile_formdata(formData)); 
-          
-        });
-
-
-  concat(...requests).subscribe(
-    (res) => {
-      
-      console.log(res);
-      // console.log(res[this.fileNames[0]]);
-      this.response.push(res);
-      this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),res['predictions']);
-      // this.fileNames.shift();
-      
-    },
-
-    (err) => {  
-      console.log(err);
+  onDrop(files: FileList) {
+    for (let i = 0; i < files.length; i++) {
+      this.files.push(files.item(i));
+      console.log(files.item(i));
     }
-  );
-  
-  this.router.navigate(['process']);
-  this.saveResults.setJSONData(this.response);
+    
+  }
 }
 
-}
+
+
+
+
+
 

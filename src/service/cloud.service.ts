@@ -29,7 +29,7 @@ export class Cloud {
     " https://console.firebase.google.com/project/angular-datebase/storage/angular-datebase.appspot.com/files~2F";
   fileUpload: FileUpload;
   private host_cloud = "https://imagepredict-bnbtuguipq-ew.a.run.app/upload";
-  private host = "http://127.0.0.1:7000/test"
+  private host = "http://127.0.0.1:7000/"
   URL = "https://us-central1-rh-click-version-1.cloudfunctions.net/predict-1";
   URL2 =
     "https://us-central1-histopathology-hackathon.cloudfunctions.net/predict_image";
@@ -100,10 +100,10 @@ export class Cloud {
     }, 600);
     return UserData;
   }
-  postFile_formdata(form) {
-    // const formData = new FormData();
-    // formData.append("file", fileToUpload);
-    return this.http.post<any>(this.host, form);
+  postFile_formdata(file) {
+    const formData = new FormData();
+    formData.append("file", file);
+    return this.http.post<any>(this.host, formData);
   }
   getUserDicom(email: string): any[] {
     var UserData = [];
