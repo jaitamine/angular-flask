@@ -8,7 +8,8 @@ export class ResultsService {
   jsonData: any;
   private dataSource = new BehaviorSubject({});
   data = this.dataSource.asObservable();
-  fileNames = this.dataSource.asObservable();
+  // responseCounter =  this.dataSource.asObservable();
+  // responseLIst : any[] = [];
 
 
   constructor() {
@@ -21,11 +22,12 @@ export class ResultsService {
     return this.data;
   }
 
-  setFileNames(val: object) {
-    this.dataSource.next(val);
-  }
 
-  getFileNames() {
-    return this.fileNames;
-  }
+  // setCounter(val: object) {
+  //   this.dataSource.next(val);
+  // }
+
+  // getResponse() {
+  //   return this.responseCounter;
+  // }
 }

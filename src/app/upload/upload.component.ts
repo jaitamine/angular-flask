@@ -40,32 +40,32 @@ export class UploadComponent implements OnInit {
   }
 
 
-  upload(files: FileList) {
+  // upload(files: FileList) {
 
-    const user = localStorage.getItem('user');
-    const id = Math.random().toString(36).substring(2)+'.dcm';
-    this.ref = this.afStorage.ref(user + '/' + id );
-    var metadata = {
-      contentType: 'dcm',
-    };
-    this.task = this.ref.put(files[0]);
-    this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
-    this.uploadProgress = this.task.percentageChanges();
-    this.task.snapshotChanges().pipe(
-      finalize(() => {
-      this.downloadURL = this.ref.getDownloadURL();
-        this.downloadURL.subscribe(url => { this.imageUrl = url;
-          console.log(url);
-          this.fileToUpload=files[0];
-          this.uploadFile_formdata();
-        });
-      })
-    ).subscribe();
-    (error) => {
+  //   const user = localStorage.getItem('user');
+  //   const id = Math.random().toString(36).substring(2)+'.dcm';
+  //   this.ref = this.afStorage.ref(user + '/' + id );
+  //   var metadata = {
+  //     contentType: 'dcm',
+  //   };
+  //   this.task = this.ref.put(files[0]);
+  //   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+  //   this.uploadProgress = this.task.percentageChanges();
+  //   this.task.snapshotChanges().pipe(
+  //     finalize(() => {
+  //     this.downloadURL = this.ref.getDownloadURL();
+  //       this.downloadURL.subscribe(url => { this.imageUrl = url;
+  //         console.log(url);
+  //         this.fileToUpload=files[0];
+  //         this.uploadFile_formdata();
+  //       });
+  //     })
+  //   ).subscribe();
+  //   (error) => {
     
-      this.log.logAngular(error.message);
-    };
-  }
+  //     this.log.logAngular(error.message);
+  //   };
+  // }
   navugationResult() {
     this.Stringprocess(this.imageUrl);
     setTimeout(() => {
@@ -100,19 +100,19 @@ export class UploadComponent implements OnInit {
         this.log.logAngular(error.message);
       };
   }
-  uploadFile_formdata() {
-    if (this.fileToUpload == null) {
-      alert('You must choose a file first!');
-    } else {
-      this.cloud.postFile_formdata(this.fileToUpload)
-        .subscribe(data => {  this.response=data['predictions'];
-        // this.image64=data['image'];
-         //console.log(this.response);
-         this.router.navigate(['process']);
-         this.saveResults.setJSONData(this.response);
-         this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response);
+//   uploadFile_formdata() {
+//     if (this.fileToUpload == null) {
+//       alert('You must choose a file first!');
+//     } else {
+//       this.cloud.postFile_formdata(this.fileToUpload)
+//         .subscribe(data => {  this.response=data['predictions'];
+//         // this.image64=data['image'];
+//          //console.log(this.response);
+//          this.router.navigate(['process']);
+//          this.saveResults.setJSONData(this.response);
+//          this.cloud.putResultsAndImageAndUser(localStorage.getItem('user'),this.imageUrl,this.response);
          
-          });
-  }
-}
+//           });
+//   }
+// }
 }

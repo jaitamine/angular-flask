@@ -96,6 +96,8 @@ export class UploadMultipleComponent implements OnInit {
       this.files.push(files.item(i));
       console.log(files.item(i));
     }
+  
+    
     
   }
 }
