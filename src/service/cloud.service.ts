@@ -103,7 +103,7 @@ export class Cloud {
   postFile_formdata(file) {
     const formData = new FormData();
     formData.append("file", file);
-    return this.http.post<any>(this.host, formData);
+    return this.http.post<any>(this.host_cloud, formData);
   }
   getUserDicom(email: string): any[] {
     var UserData = [];

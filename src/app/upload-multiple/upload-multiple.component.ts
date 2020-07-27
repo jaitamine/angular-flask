@@ -15,7 +15,7 @@ import { UploadService } from 'src/service/upload.service';
 })
 export class UploadMultipleComponent implements OnInit {
   
-  public uploader: FileUploader = new FileUploader({});
+  // public uploader: FileUploader = new FileUploader({});
   public hasBaseDropZoneOver: boolean = false;
 
   

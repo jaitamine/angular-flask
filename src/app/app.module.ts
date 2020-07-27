@@ -26,7 +26,7 @@ import { AngularFireStorageModule, AngularFireStorage } from "@angular/fire/stor
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { ProcessComponent } from "./process/process.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { FileSelectDirective } from "ng2-file-upload";
+import { FileSelectDirective, FileUploadModule } from "ng2-file-upload";
 import { UploadFileService } from "src/service/UploadFileService.service";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { ListComponent } from "./dashboard/list/list.component";
@@ -66,7 +66,6 @@ import { AngularFirestore } from '@angular/fire/firestore';
     DcmDisplayComponent,
     CornerstoneDirective,
     UploadMultipleComponent,
-    FileSelectDirective,
     DropzoneDirective,
     UploadTaskComponent
   ],
@@ -75,6 +74,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     BrowserModule,
     HttpClientModule,
     JwtModule,
+    FileUploadModule,
     AppRoutingModule,
     FormsModule,
     RouterModule,
