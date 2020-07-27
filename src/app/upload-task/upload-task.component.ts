@@ -2,11 +2,12 @@ import { Component, OnInit, Input, ChangeDetectorRef } from '@angular/core';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Log } from 'src/service/log.service';
-import { Observable } from 'rxjs';
-import { finalize, tap, map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { finalize, tap, map, catchError } from 'rxjs/operators';
 import { Cloud } from 'src/service/cloud.service';
 import { ResultsService } from 'src/service/results.service';
 import { Router } from '@angular/router';
+import { UploadService } from 'src/service/upload.service';
 
 @Component({
   selector: 'upload-task',
@@ -21,15 +22,14 @@ export class UploadTaskComponent implements OnInit {
 
   percentage: Observable<number>;
   snapshot: Observable<any>;
-  downloadURL: string;
-  responseCounter : number = 0;
+  downloadURL: Observable<string>;
   responseList : any[] = [];
   response : any;
   sensor : boolean = false;
   
 
   constructor(private storage: AngularFireStorage, private db: AngularFirestore, private cloud : Cloud,
-     private log: Log, private resultsService:ResultsService,
+     private log: Log, private resultsService:ResultsService, private uploadService : UploadService,
      private router: Router) { }
 
   ngOnInit() {
@@ -49,25 +49,35 @@ export class UploadTaskComponent implements OnInit {
 
 
     this.task = ref.put(this.file);
+    console.log(this.file);
+    // this.task = this.storage.upload(path, this.file);
 
     this.percentage = this.task.percentageChanges();
     // Progress monitoring
     
-    // this.snapshot = this.task.snapshotChanges().pipe(map(s => s.state));
+    this.snapshot = this.task.snapshotChanges().pipe(map(s => s.state));
+    console.log("percentage  is  :" + this.percentage);
 
-    this.snapshot = this.task.snapshotChanges().pipe(
+    this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
-      finalize( async() =>  {
-        this.downloadURL = await ref.getDownloadURL().toPromise();
-
-        this.uploadFile_formdata(this.downloadURL, user);
-
-        this.router.navigate(['/process']);
+      finalize( () =>  {
+        this.downloadURL = ref.getDownloadURL();
+        this.downloadURL.subscribe(url => { 
+          console.log(url);         
+          this.uploadFile_formdata(url, user);
+                    
+        });
+                
+        catchError(e => throwError(e));
         
       }),
-    )
-
+      
+    ).subscribe();
+    (error) => {
+    
+      this.log.logAngular(error.message);
+    }
   }
 
   isActive(snapshot) {
@@ -75,15 +85,14 @@ export class UploadTaskComponent implements OnInit {
   }
 
   uploadFile_formdata(url, user)  {
-
-
-        return this.cloud.postFile_formdata(this.file)
-        .subscribe(data => {this.response=data['predictions'];
-         console.log(data)
+        
+        
+        this.cloud.postFile_formdata(this.file)
+        .subscribe(data => {this.response=data['predictions'];      
+         console.log(data);
          this.cloud.putResultsAndImageAndUser(user , url, this.response);
-         this.router.navigate(['/dashboard']);
-         
-                  
+         this.uploadService.setJSONData(data);                
           });
+          
   }
 }

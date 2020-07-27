@@ -1,32 +1,3 @@
-<!-- <div ng2FileDrop
-[ngClass]="{'drop-file-over': hasBaseDropZoneOver}"
-(fileOver)="fileOverBase($event)"
-
-class="area"> -->
-<!-- <div id="dropZone">Drop files here</div>
-</div> -->
-
-<!-- <div class="container">
-    <div class="card">
-      <div class="card-header">
-      </div>
-      <div class="card-body">
-
-<input type="file" ng2FileSelect [uploader]="uploader" multiple  />
-
-<button (click)="upload()">Upload files</button>
-<h2>Vos Fichiers: {{ uploader?.queue?.length }}</h2>
-<ul>
-<li *ngFor="let item of uploader.queue">
-    {{ item?.file?.name }}
-</li>
-</ul>
-
-
-      </div>
-    </div>
-</div> -->
-
 <div class="dropzone" 
      dropzone
      (hovered)="toggleHover($event)"
@@ -34,7 +5,7 @@ class="area"> -->
      [class.hovering]="isHovering">
 
 
-     <h3>AngularFire Drop Zone</h3>
+     <h3>Drop Files</h3>
      <p>Drag and Drop a File</p>
 </div>
 

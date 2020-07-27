@@ -21,7 +21,7 @@ import { UploadTaskComponent } from './upload-task/upload-task.component';
 
 const routes: Routes = [
   { path: "display", component: DcmDisplayComponent},
-  { path: "dashboard", component: DashboardComponent, pathMatch: "prefix", canActivate: [AuthGuard] },
+  { path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard] },
   { path: "list", component: ListComponent, canActivate: [AuthGuard] },
   { path: "", component: HomeComponent },
   { path: "process", component: ProcessComponent, canActivate: [AuthGuard] },

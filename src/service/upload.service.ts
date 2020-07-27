@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, BehaviorSubject } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Resp } from 'src/entities/resp';
@@ -9,17 +9,34 @@ import { Resp } from 'src/entities/resp';
 @Injectable({ providedIn: 'root' })
 export class UploadService {
 
-    constructor(private http: HttpClient) { }
+    jsonData: any;
+    private dataSource = new BehaviorSubject({});
+    data = this.dataSource.asObservable();
 
 
-    // postFile( fileToUpload: File) {
-    //     const endpoint = 'http://localhost:5000/upload/save_file';
-    //     const formData = new FormData();
-    //     formData.append('file', fileToUpload);
-    //     return this.http.post<Resp>(endpoint, formData, {headers: new HttpHeaders({ 'Authorization': this.jwtToken})}, { observe: 'response' });
-        
-    // }
+    jsonInfo: any;
+    private routeGo = new BehaviorSubject({});
+    go = this.routeGo.asObservable();
+  
+    constructor() {
+      this.jsonData = {};
+    }
+    setJSONData(val: object) {
+      this.dataSource.next(val);
+    }
+    getJSONData() {
+      return this.data;
+    }
+
+  setGoData(val: boolean) {
+    this.routeGo.next(val);
+  }
+  getGoData() {
+    return this.go;
+  }
     
+
+
 
 
 
