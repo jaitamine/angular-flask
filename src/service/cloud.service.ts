@@ -28,7 +28,7 @@ export class Cloud {
   base_path =
     " https://console.firebase.google.com/project/angular-datebase/storage/angular-datebase.appspot.com/files~2F";
   fileUpload: FileUpload;
-  private host_cloud = "https://imagepredict-bnbtuguipq-ew.a.run.app/upload";
+  private host_cloud = "https://imagepredict-bnbtuguipq-ew.a.run.app";
   private host = "http://127.0.0.1:7000/"
   URL = "https://us-central1-rh-click-version-1.cloudfunctions.net/predict-1";
   URL2 =
