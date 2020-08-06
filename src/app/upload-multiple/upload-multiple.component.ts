@@ -41,18 +41,16 @@ export class UploadMultipleComponent implements OnInit {
   onDrop(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       this.files.push(files.item(i));
-      console.log(files.item(i));
+      
     }
 
     //waits for data from children on by one
     this.uploadService.getJSONData().subscribe(data=>{
       this.results.push(data);
-      console.log(this.results);
-
+    
     // checks if all the results are in recieved from backend
       if (this.results.length -1 === this.files.length){
         
-        console.log("going to dashboard");
         
         this.router.navigate(['/dashboard']);
               

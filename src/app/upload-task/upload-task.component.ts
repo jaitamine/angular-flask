@@ -49,22 +49,20 @@ export class UploadTaskComponent implements OnInit {
 
 
     this.task = ref.put(this.file);
-    console.log(this.file);
     // this.task = this.storage.upload(path, this.file);
 
     this.percentage = this.task.percentageChanges();
     // Progress monitoring
     
     this.snapshot = this.task.snapshotChanges().pipe(map(s => s.state));
-    console.log("percentage  is  :" + this.percentage);
+    
 
     this.task.snapshotChanges().pipe(
       tap(console.log),
       // The file's download URL
       finalize( () =>  {
         this.downloadURL = ref.getDownloadURL();
-        this.downloadURL.subscribe(url => { 
-          console.log(url);         
+        this.downloadURL.subscribe(url => {          
           this.uploadFile_formdata(url, user);
                     
         });
@@ -89,7 +87,6 @@ export class UploadTaskComponent implements OnInit {
         
         this.cloud.postFile_formdata(this.file)
         .subscribe(data => {this.response=data['predictions'];      
-         console.log(data);
          this.cloud.putResultsAndImageAndUser(user , url, this.response);
          this.uploadService.setJSONData(data);                
           });
