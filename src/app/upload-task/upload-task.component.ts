@@ -58,7 +58,7 @@ export class UploadTaskComponent implements OnInit {
     
 
     this.task.snapshotChanges().pipe(
-      tap(console.log),
+      //tap(console.log),
       // The file's download URL
       finalize( () =>  {
         this.downloadURL = ref.getDownloadURL();
@@ -67,7 +67,7 @@ export class UploadTaskComponent implements OnInit {
                     
         });
                 
-        catchError(e => throwError(e));
+        //catchError(e => throwError(e));
         
       }),
       
